@@ -1,0 +1,157 @@
+/* ===============================
+   HERO SECTION
+================================ */
+
+.hero-section {
+  background: #ffffff;
+  padding: 90px 20px 80px 20px;
+}
+
+.hero-content {
+  max-width: 900px;
+  margin: 0 auto;
+  text-align: center;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Profile photo */
+.hero-img {
+  width: 180px;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 4px solid #e6e6e6;
+  margin-bottom: 22px;
+}
+
+/* Headline */
+.hero-content h1 {
+  font-size: 48px;
+  line-height: 1.1;
+  margin: 0 0 14px 0;
+  color: #222;
+}
+
+/* Subtitle */
+.hero-content p {
+  font-size: 22px;
+  color: #444;
+  margin: 0 0 26px 0;
+  max-width: 680px;
+}
+
+/* ===============================
+   BUTTONS
+================================ */
+
+.hero-btn-row {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+/* Base button style */
+.hero-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 12px 22px;
+  min-width: 180px;
+
+  border-radius: 10px;
+  font-weight: 600;
+  font-size: 16px;
+
+  text-decoration: none;
+  cursor: pointer;
+
+  background: #0b66ff;
+  color: #ffffff;
+  border: 1px solid #0b66ff;
+
+  transition: transform 0.12s ease, box-shadow 0.12s ease, background 0.12s ease,
+    border-color 0.12s ease, color 0.12s ease;
+}
+
+.hero-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.10);
+  background: #0a5ae0;
+  border-color: #0a5ae0;
+}
+
+.hero-btn:active {
+  transform: translateY(0);
+  box-shadow: none;
+}
+
+/* Secondary button variant */
+.hero-btn-secondary {
+  background: #ffffff;
+  color: #0b66ff;
+  border: 1px solid #0b66ff;
+}
+
+.hero-btn-secondary:hover {
+  background: #f3f7ff;
+  border-color: #0a5ae0;
+  color: #0a5ae0;
+}
+
+/* Hard override in case another CSS file is hiding anchors */
+.hero-content .hero-btn {
+  display: inline-flex !important;
+}
+
+/* ===============================
+   RESPONSIVE
+================================ */
+
+@media (max-width: 900px) {
+  .hero-content h1 {
+    font-size: 40px;
+  }
+
+  .hero-content p {
+    font-size: 20px;
+  }
+
+  .hero-img {
+    width: 160px;
+    height: 160px;
+  }
+}
+
+@media (max-width: 600px) {
+  .hero-section {
+    padding: 70px 16px 60px 16px;
+  }
+
+  .hero-content h1 {
+    font-size: 34px;
+  }
+
+  .hero-content p {
+    font-size: 18px;
+  }
+
+  .hero-img {
+    width: 140px;
+    height: 140px;
+  }
+
+  .hero-btn {
+    min-width: 160px;
+    width: 100%;
+  }
+
+  .hero-btn-row {
+    width: 100%;
+  }
+}

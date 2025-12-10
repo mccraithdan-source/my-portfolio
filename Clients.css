@@ -1,0 +1,255 @@
+/* ===============================
+   CLIENTS SECTION
+   Draggable horizontal logo carousel + arrows
+================================ */
+
+/* Section wrapper */
+#clients {
+  padding: 60px 0 20px 0;
+}
+
+/* Section title */
+#clients .section-title {
+  font-size: 32px;
+  margin-bottom: 20px;
+}
+
+/* Outer shell */
+.clients-marquee {
+  position: relative;
+  width: 100%;
+  padding: 10px 0 18px 0;
+}
+
+/* Soft fade edges */
+.clients-marquee::before,
+.clients-marquee::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  width: 70px;
+  height: 100%;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.clients-marquee::before {
+  left: 0;
+  background: linear-gradient(to right, #fff, rgba(255, 255, 255, 0));
+}
+
+.clients-marquee::after {
+  right: 0;
+  background: linear-gradient(to left, #fff, rgba(255, 255, 255, 0));
+}
+
+/* ✅ Real scroll/drag viewport */
+.clients-viewport {
+  overflow-x: auto;
+  overflow-y: hidden;
+  width: 100%;
+
+  padding: 8px 6px;
+
+  /* Smooth for wheel/trackpad + arrow clicks */
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+
+  /* allow horizontal dragging without fighting vertical page scroll */
+  touch-action: pan-y;
+
+  cursor: grab;
+  user-select: none;
+
+  scrollbar-width: thin;
+}
+
+.clients-viewport::-webkit-scrollbar {
+  height: 8px;
+}
+
+.clients-viewport.is-dragging {
+  cursor: grabbing;
+  scroll-behavior: auto; /* ✅ disable smooth while dragging */
+}
+
+/* The row */
+.clients-track {
+  display: flex;
+  align-items: center;
+  gap: 10px; /* keep in sync with JSX scroll calc */
+
+  width: max-content;
+
+  /* ✅ draggable mode: no marquee animation */
+  animation: none;
+}
+
+/* -------------------------------
+   CLIENT ITEM (logo + name)
+-------------------------------- */
+.client-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 8px;
+
+  flex: 0 0 auto;
+  text-align: center;
+}
+
+/* Each logo "slot" */
+.client-logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 200px;
+  height: 90px;
+  padding: 0 16px;
+
+  flex: 0 0 auto;
+
+  background: #ffffff;
+  border: 1px solid #efefef;
+  border-radius: 12px;
+}
+
+/* The logo image fits inside the slot */
+.client-logo img {
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+
+  opacity: 0.9;
+  filter: grayscale(10%);
+  transition: transform 0.2s ease, opacity 0.2s ease, filter 0.2s ease;
+}
+
+.client-logo:hover img {
+  opacity: 1;
+  filter: grayscale(0%);
+  transform: scale(1.03);
+}
+
+/* Name under the logo */
+.client-name {
+  font-size: 18px;
+  color: #222;
+  line-height: 1.2;
+  white-space: nowrap;
+}
+
+/* -------------------------------
+   ARROWS
+-------------------------------- */
+.clients-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 4;
+
+  width: 48px;
+  height: 48px;
+  border-radius: 999px;
+
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  background: #ffffff;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+
+  font-size: 22px;
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  transition: transform 0.12s ease, box-shadow 0.12s ease;
+}
+
+.clients-nav:hover {
+  transform: translateY(-50%) scale(1.05);
+  box-shadow: 0 10px 22px rgba(0, 0, 0, 0.12);
+}
+
+.clients-nav:active {
+  transform: translateY(-50%) scale(0.98);
+}
+
+.clients-nav-left {
+  left: -6px; /* tweak to taste */
+}
+
+.clients-nav-right {
+  right: -6px;
+}
+
+/* -------------------------------
+   RESPONSIVE TWEAKS
+-------------------------------- */
+@media (max-width: 1100px) {
+  .client-logo {
+    width: 180px;
+    height: 80px;
+  }
+
+  .client-name {
+    font-size: 17px;
+  }
+}
+
+@media (max-width: 900px) {
+  .client-logo {
+    width: 170px;
+    height: 75px;
+  }
+
+  .clients-marquee::before,
+  .clients-marquee::after {
+    width: 50px;
+  }
+
+  .clients-nav {
+    width: 44px;
+    height: 44px;
+    font-size: 20px;
+  }
+
+  .client-name {
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 560px) {
+  .client-logo {
+    width: 140px;
+    height: 65px;
+    border-radius: 10px;
+  }
+
+  .clients-nav {
+    width: 40px;
+    height: 40px;
+    font-size: 18px;
+  }
+
+  .client-name {
+    font-size: 15px;
+  }
+}
+
+/* Accessibility: reduce motion preference */
+@media (prefers-reduced-motion: reduce) {
+  .clients-viewport {
+    scroll-behavior: auto;
+  }
+
+  .client-logo,
+.client-name {
+  pointer-events: none;
+}
+
+}
